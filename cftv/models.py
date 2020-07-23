@@ -1,4 +1,5 @@
 from django.db import models
+from cliente.models import Cliente
 
 
 class CftvOrcamento(models.Model):
@@ -9,11 +10,11 @@ class CftvOrcamento(models.Model):
         ('Externo', 'Externo')
     )
 
+    cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, verbose_name='CLiente')
     ambiente = models.CharField('Ambiente', max_length=10, choices=AMBIENTE_CHOICES)
     imagem = models.ImageField('Imagem do local', upload_to='local')
     local = models.CharField('Local', max_length=80)
     descricao = models.TextField('Descrição do local', max_length=200)
-
 
     class Meta:
 
@@ -49,21 +50,20 @@ class Cabo(models.Model):
         return self.modelo
 
 
-class Equipamento(models.Model):
-    equipamento = models.CharField('Equipamento', max_length=100)
-    fabricante = models.ForeignKey(Fabricante, on_delete=models.PROTECT, verbose_name='Fabricante')
+class Equipamentocftv(models.Model):
+    equipamento_cftv = models.CharField('Equipamento', max_length=100)
+    fabricante = models.ForeignKey(Fabricante, related_name='fabricante_fabricante', on_delete=models.PROTECT, verbose_name='Fabricante')
     modelo = models.CharField('Modelo', max_length=100)
-    infra = models.IntegerField('Distania do Infra vermelho')
-    lente = models.FloatField('Tamanho da lente')
-    consumo_amper = models.FloatField('Consumo em amperes')
-    consumo_volts = models.FloatField('Consumo em volts')
-    canais = models.IntegerField('Quantidade de canais')
-    armazenamento = models.IntegerField('Quantidade de armazenamento em terabyte')
-
+    infra = models.IntegerField('Distania em metros do Infra vermelho', blank=True, null=True)
+    lente = models.FloatField('Tamanho da lente', blank=True, null=True)
+    consumo_amper = models.FloatField('Consumo em amperes', blank=True, null=True)
+    consumo_volts = models.FloatField('Consumo em volts', blank=True, null=True)
+    canais = models.IntegerField('Quantidade de canais', blank=True, null=True)
+    armazenamento = models.IntegerField('Quantidade de armazenamento em terabyte', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Equipamento'
         verbose_name_plural = 'Equipamentos'
 
     def __str__(self):
-        return self.equipamento
+        return self.equipamento_cftv

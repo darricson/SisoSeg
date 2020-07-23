@@ -1,0 +1,23 @@
+{% extends 'cliente/base.html' %}
+{% load bootstrap4 %}
+
+{% block title%}
+New Cliente
+{% endblock %}
+
+{% block content %}
+<div class="row"><!--Div row 01-->
+    <div class="col col-3"></div><!--DIV col left-->
+        <div class="col col-6">
+            <form action="{% url 'cliente_new' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                {% buttons %}
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                {% endbuttons %}
+            </form>
+        </div>
+        <div class="col col-3"></div>
+</div><!--end DIV row 01-->
+
+{% endblock %}

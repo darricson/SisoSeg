@@ -1,0 +1,40 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Orçamento | lista</title>
+{% bootstrap_css %}
+</head>
+<body><br>
+<h3>Lista de orçamentos</h3><br/>
+<div class="container ">
+    <table class="table text-center">
+        <thead class="">
+            <th scope="col">Ambiente</th>
+            <th scope="col">Local</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Imagem</th>
+            <th>Ações</th>
+        </thead>
+        <tbody>
+            {% for orcamento in orcamentos %}
+              <tr>
+                <td>{{ orcamento.ambiente }}</td>
+                <td>{{ orcamento.local }}</td>
+                <td>{{ orcamento.descricao }}</td>
+                <td>{{ orcamento.imagem}}</td>
+               <td><a href="{% url orcamento:update orcamento.id %}" class="btn btn-small"><i class="icon-edit" title="Alterar"></i></a>
+
+                    <a href="#" class="btn btn-small"><i class="icon-remove"title="Excluir"></i></a>
+
+                </td>
+             </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div><!--end div table-->
+
+{% bootstrap_javascript jquery='full' %}
+</body>
+</html>
