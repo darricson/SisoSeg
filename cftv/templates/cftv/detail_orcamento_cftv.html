@@ -1,0 +1,44 @@
+{% extends 'cliente/base.html' %}
+
+{% block title %} Detalhes | Orcamento {% endblock %}
+
+{% block content %}
+<br>
+<div class="container">
+   <div class="col col-sm-2 text-right">
+      <a href="{% url 'update_orc_cftv' orcamento.id %}">editar</a>
+      <a href="{% url 'orcamento_cftv' %}">voltar</a>
+    </div>
+  <div class="row justify-content-center">
+    <div class="col col-md-8 ">
+      <div class="card">
+        <div class="card-header text-center ">
+          <h4>Detalhes Orçamento</h4>
+        </div><!--end div card-header-->
+        <div class="card-body">
+            <div class="form-group">
+              <label for="disabledInput1">Cliente</label>
+              <input type="text" class="form-control" id="disabledInput1" placeholder="{{ orcamento.cliente }}" disabled>
+            </div>
+            <div class="form-group">
+              <label for="disabledInput2">Ambiente</label>
+              <input type="text" class="form-control" id="disabledInput2" placeholder="{{ orcamento.ambiente }}" disabled>
+            </div>
+            <div class="form-group">
+              <label for="disabledInput3">Imagem</label>
+              <input type="text" class="form-control" id="disabledInput3" placeholder="{{ orcamento.imagem }}" disabled>
+            </div>
+            <div class="form-group">
+              <label for="disabledInput4">Local</label>
+              <input type="text" class="form-control" id="disabledInput4" placeholder="{{ orcamento.local }}" disabled>
+            </div>
+            <div class="form-group">
+              <label for="disabledInput5">Descrição</label>
+              <input type="text" class="form-control" id="disabledInput5" placeholder="{{ orcamento.descricao }}" disabled>
+            </div>
+        </div><!--end div card-body-->
+      </div><!--end div card-->
+    </div>
+  </div><!--end div row-->
+</div><!--end div container-->
+{% endblock %}

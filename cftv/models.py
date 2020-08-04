@@ -1,5 +1,15 @@
+import uuid
 from django.db import models
 from cliente.models import Cliente
+from stdimage.models import StdImageField
+
+
+# metodo que pega o arquivo de imagem, separa a extnsa0 e recria com um novo nome
+# uuid faz a geração aleatoria do nome do arquivo de imagem
+def get_file_path(_instance, filename):
+    ext = filename.split('.')[-1]
+    filename = f'{uuid.uuid4()}.{ext}'
+    return filename
 
 
 class CftvOrcamento(models.Model):
@@ -7,12 +17,14 @@ class CftvOrcamento(models.Model):
     AMBIENTE_CHOICES = (
 
         ('Interno', 'Interno'),
-        ('Externo', 'Externo')
+        ('Semi-aberto', 'Semi-aberto'),
+        ('Externo', 'Externo'),
+        ('Abertura', 'Abertura')
     )
 
     cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, verbose_name='CLiente')
-    ambiente = models.CharField('Ambiente', max_length=10, choices=AMBIENTE_CHOICES)
-    imagem = models.ImageField('Imagem do local', upload_to='local')
+    ambiente = models.CharField('Ambiente', max_length=15, choices=AMBIENTE_CHOICES)
+    imagem = models.ImageField('Imagem do local', upload_to='media')
     local = models.CharField('Local', max_length=80)
     descricao = models.TextField('Descrição do local', max_length=200)
 

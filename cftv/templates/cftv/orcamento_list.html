@@ -1,14 +1,11 @@
+{% extends 'cliente/base.html' %}
 {% load bootstrap4 %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Orçamento | lista</title>
-{% bootstrap_css %}
-</head>
-<body><br>
+{% load static %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
 <h3>Lista de orçamentos</h3><br/>
-<div class="container ">
     <table class="table text-center">
         <thead class="">
             <th scope="col">Ambiente</th>
@@ -16,6 +13,7 @@
             <th scope="col">Descrição</th>
             <th scope="col">Imagem</th>
             <th>Ações</th>
+            <th><a href="{% url 'new_orc_cftv' %}"><span class="badge badge-success text-center">Novo</span></a></th>
         </thead>
         <tbody>
             {% for orcamento in orcamentos %}
@@ -23,18 +21,11 @@
                 <td>{{ orcamento.ambiente }}</td>
                 <td>{{ orcamento.local }}</td>
                 <td>{{ orcamento.descricao }}</td>
-                <td>{{ orcamento.imagem}}</td>
-               <td><a href="{% url orcamento:update orcamento.id %}" class="btn btn-small"><i class="icon-edit" title="Alterar"></i></a>
-
-                    <a href="#" class="btn btn-small"><i class="icon-remove"title="Excluir"></i></a>
-
-                </td>
+                <td><img class="img-fluid" src="{{ orcamento.imagem.url }}" alt=" " height="100"></td>
+                <td><a href="{% url 'detail_orcamento' orcamento.id %}"><span class="badge badge-warning">Detalhes</span></a></td>
+                <td><a href="{% url 'delete_orc_cftv' orcamento.id %}"><span class="badge badge-danger">Apagar</span></a></td>
              </tr>
             {% endfor %}
         </tbody>
     </table>
-</div><!--end div table-->
-
-{% bootstrap_javascript jquery='full' %}
-</body>
-</html>
+{% endblock %}

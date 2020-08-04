@@ -1,0 +1,56 @@
+{% extends 'cliente/base.html' %}
+
+{% block title %} Detalhes | Cliente {% endblock %}
+
+{% block content %}
+<br>
+<div class="container">
+   <div class="col col-sm-2 text-right">
+      <a href="{% url 'cliente_update' cliente.id %}">editar</a>
+      <a href="{% url 'cliente_list' %}">voltar</a>
+    </div>
+  <div class="row justify-content-center">
+    <div class="col col-md-8 ">
+      <div class="card">
+        <div class="card-header text-center ">
+          <h4>Detalhes Clientes</h4>
+        </div><!--end div card-header-->
+        <div class="card-body">
+            <div class="form-group">
+              <label for="disabledInput1">Nome</label>
+              <input type="text" class="form-control" id="disabledInput1" placeholder="{{ cliente.nome }}" disabled>
+            </div>
+            <div class="form-group">
+              <label for="disabledInput2">E-mail</label>
+              <input type="text" class="form-control" id="disabledInput2" placeholder="{{ cliente.email }}" disabled>
+            </div>
+            <div class="form-group">
+              <label for="disabledInput3">Telefone</label>
+              <input type="text" class="form-control" id="disabledInput3" placeholder="{{ cliente.telefone }}" disabled>
+            </div>
+            <div class="form-group">
+              <label for="disabledInput4">Rua</label>
+              <input type="text" class="form-control" id="disabledInput4" placeholder="{{ cliente.rua }}" disabled>
+            </div>
+            <div class="form-group">
+              <label for="disabledInput5">Numero</label>
+              <input type="text" class="form-control" id="disabledInput5" placeholder="{{ cliente.numero }}" disabled>
+            </div>
+            <div class="form-group">
+              <label for="disabledInput6">bairro</label>
+              <input type="text" class="form-control" id="disabledInput6" placeholder="{{ cliente.bairro }}" disabled>
+            </div>
+            <div class="form-group">
+              <label for="disabledInput7">Cidade</label>
+              <input type="text" class="form-control" id="disabledInput7" placeholder="{{ cliente.cidade }}" disabled>
+            </div>
+            <div class="form-group">
+              <label for="disabledInput8">Ponto de referencia</label>
+              <input type="text" class="form-control" id="disabledInput8" placeholder="{{ cliente.ponto_referencia }}" disabled>
+            </div>
+        </div><!--end div card-body-->
+      </div><!--end div card-->
+    </div>
+  </div><!--end div row-->
+</div><!--end div container-->
+{% endblock %}

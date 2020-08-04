@@ -5,25 +5,28 @@
 
 {% block content %}
 <h3>Lista de Clientes</h3><br>
-<div class="container">
-    <table class="table text-center">
-        <thead>
-            <th scope="col">Nome</th>
-            <th scope="col">Bairro</th>
-            <th scope="col">Email</th>
-            <th scope="col">Telefone</th>
-        </thead>
-        <tbody>
-            {% for clientes in cliente %}
-            <tr>
-                <td>{{ clientes.nome }}</td>
-                <td>{{ clientes.bairro }}</td>
-                <td>{{ clientes.email }}</td>
-                <td>{{ clientes.telefone }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+    <div class="table-responsive">
+        <table class="table text-center table-bordered">
+            <thead class="thead-dark">
+                <th scope="col">Nome</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Ação</th>
+                <th><a href="{% url 'cliente_new' %}"><span class="badge badge-success text-center">Novo</span></a></th>
+            </thead>
+            <tbody>
+                {% for clientes in cliente %}
+                <tr>
+                    <td>{{ clientes.nome }}</td>
+                    <td>{{ clientes.telefone }}</td>
+                    {% if user.is_authenticated %}
+                  <td><a href="{% url 'cliente_detail' clientes.id %}"><span class="badge badge-warning">Detalhes</span></a></td>
+                  <td><a href="{% url 'cliente_delete' clientes.id %}"><span class="badge badge-danger">Apagar</span></a></td>
+                  {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 
 {% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'cliente/base.html' %}
+
+{% block title %} Delete | Cliente{% endblock %}
+
+{% block content %}
+<div class="conatainer"><br>
+          <div class="card">
+          <form method="POST">
+              {% csrf_token %}
+              <div class="card-header text-center">
+              <h4>Apagar registro</h4>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Atenção!</h5>
+                  <p class="card-text">Você tem certeza que deseja apagar o registro <h3>{{ cliente.nome }}</h3></p>
+                  <button class="btn btn-danger" type="submit" value="Apagar">Apagar</button>
+                <a href="{% url 'cliente_list' %}" class="btn btn-primary">cancela</a>
+              </div>
+          </form>
+      </div>
+</div>
+{% endblock %}
